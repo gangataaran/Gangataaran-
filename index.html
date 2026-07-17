@@ -324,10 +324,6 @@
             <div class="icon">🖼️</div>
             <div>PROFILE PHOTO<br>placeholder — 4:5</div>
           </div>
-          <svg class="scope" viewBox="0 0 300 60" fill="none">
-            <rect width="300" height="60" rx="10" fill="none" stroke="var(--panel-border)"/>
-            <polyline id="wave" points="" stroke="var(--accent)" stroke-width="2" fill="none"/>
-          </svg>
         </div>
       </div>
   </section>
@@ -536,21 +532,6 @@
     setTimeout(tick, deleting ? 40 : 70);
   }
   tick();
-
-  // oscilloscope waveform
-  const wave = document.getElementById('wave');
-  let t = 0;
-  function drawWave(){
-    let pts = [];
-    for(let x=0; x<=300; x+=6){
-      const y = 30 + Math.sin((x*0.06) + t) * 16 * Math.exp(-Math.abs(Math.sin(t*0.3))*0.2);
-      pts.push(x+","+y);
-    }
-    wave.setAttribute('points', pts.join(' '));
-    t += 0.06;
-    requestAnimationFrame(drawWave);
-  }
-  drawWave();
 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
