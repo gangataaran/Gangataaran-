@@ -329,6 +329,23 @@
   /* mobile menu button (visual only) */
   .burger{ display:none; }
   @media (max-width:780px){ .burger{ display:block; font-size:20px; cursor:pointer; } }
+
+/* ===== Premium Contact Section ===== */
+.modern-contact{display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start;margin-top:40px}
+.contact-info{display:flex;flex-direction:column;gap:18px}
+.info-card{display:flex;align-items:center;gap:18px;padding:22px;background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;transition:.3s}
+.info-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 25px rgba(61,220,151,.12)}
+.info-icon{width:52px;height:52px;border-radius:12px;background:#151b24;display:flex;align-items:center;justify-content:center;font-size:22px}
+.info-card span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.info-card h3{font-size:17px;margin-top:6px}
+.contact-form{background:var(--panel);border:1px solid var(--panel-border);border-radius:18px;padding:28px}
+.contact-form h3{font-size:30px;margin-bottom:20px}
+.contact-form label{font-size:13px;color:var(--muted);margin-bottom:6px}
+.contact-form input,.contact-form textarea{width:100%;padding:14px 16px;background:#141923;border:1px solid var(--panel-border);border-radius:10px;color:var(--text);margin-bottom:16px}
+.contact-form textarea{min-height:150px}
+.contact-form button{width:100%;padding:15px;border:none;border-radius:10px;background:linear-gradient(90deg,#39d98a,#3b82f6);color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:900px){.modern-contact{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -531,38 +548,33 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="sec-head reveal">
-        <div>
-          <div class="eyebrow">07 / CONTACT</div>
-          <h2>Let's Connect.</h2>
-        </div>
-      </div>
-
-      <div class="modern-contact reveal">
-        <div class="contact-info">
-          <div class="info-card"><div class="icon">📧</div><div><span>Email Address</span><h3>your.email@example.com</h3></div></div>
-          <div class="info-card"><div class="icon">📞</div><div><span>Phone</span><h3>+91 XXXXX XXXXX</h3></div></div>
-          <div class="info-card"><div class="icon">💼</div><div><span>LinkedIn</span><h3>linkedin.com/in/yourprofile</h3></div></div>
-          <div class="info-card"><div class="icon">📍</div><div><span>Location</span><h3>UCE (BIT Campus), Tiruchirappalli</h3></div></div>
-        </div>
-
-        <div class="contact-form">
-          <h2>Send Me a Message</h2>
-          <form onsubmit="event.preventDefault(); alert('Thank you!');">
-            <label>Your Name</label>
-            <input type="text" placeholder="Enter your name">
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter your email">
-            <label>Subject</label>
-            <input type="text" placeholder="Project / Job Opportunity">
-            <label>Message</label>
-            <textarea placeholder="Write your message..."></textarea>
-            <button type="submit">Send Message →</button>
-          </form>
-        </div>
-      </div>
-    </section>
+<section id="contact">
+<div class="sec-head reveal">
+<div><div class="eyebrow">07 / CONTACT</div><h2>Let's Connect.</h2></div>
+</div>
+<div class="modern-contact reveal">
+<div class="contact-info">
+<div class="info-card"><div class="info-icon">📧</div><div><span>Email Address</span><h3>gangataaran4@gmail.com</h3></div></div>
+<div class="info-card"><div class="info-icon">📞</div><div><span>Phone</span><h3>+91 8610061570</h3></div></div>
+<div class="info-card"><div class="info-icon">💼</div><div><span>LinkedIn</span><h3>linkedin.com/in/gangataaran</h3></div></div>
+<div class="info-card"><div class="info-icon">📍</div><div><span>Location</span><h3>Tiruchirappalli, Tamil Nadu</h3></div></div>
+</div>
+<div class="contact-form">
+<h3>Send Me a Message</h3>
+<form onsubmit="event.preventDefault();alert('Thank you for your message!');">
+<label>Your Name</label>
+<input type="text" placeholder="Enter your name" required>
+<label>Email Address</label>
+<input type="email" placeholder="Enter your email" required>
+<label>Subject</label>
+<input type="text" placeholder="Project / Job Opportunity">
+<label>Message</label>
+<textarea placeholder="Write your message..."></textarea>
+<button type="submit">Send Message →</button>
+</form>
+</div>
+</div>
+</section>
 
     <footer>
       <div>© 2026 Gangataaran. Built with Next.js, all content editable via JSON.</div>
