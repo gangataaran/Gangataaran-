@@ -170,6 +170,11 @@
   .hero-photo{ aspect-ratio:4/5; width:100%; max-width:340px; margin-left:auto; }
   @media (max-width:900px){ .hero-photo{ margin:0 auto; } }
 
+  .scope{
+    margin-top:34px; width:100%; max-width:340px; margin-left:auto;
+  }
+  @media (max-width:900px){ .scope{ margin:34px auto 0; } }
+
   /* ---------- reveal ---------- */
   .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.show{ opacity:1; transform:translateY(0); }
@@ -255,7 +260,23 @@
   textarea{ min-height:110px; resize:vertical; }
   input:focus, textarea:focus{ outline:2px solid var(--accent); }
 
-  footer{ padding:50px 28px 90px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; color:var(--muted); font-size:13px; }
+  
+/* Modern Contact */
+.modern-contact{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;margin-top:40px}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.info-card{display:flex;align-items:center;gap:18px;background:var(--panel);border:1px solid var(--panel-border);padding:22px;border-radius:18px;transition:.3s}
+.info-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.icon{width:54px;height:54px;border-radius:14px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:22px}
+.info-card span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.info-card h3{margin-top:6px;font-size:18px}
+.contact-form{background:var(--panel);border:1px solid var(--panel-border);border-radius:18px;padding:30px}
+.contact-form form{display:flex;flex-direction:column;gap:16px}
+.contact-form input,.contact-form textarea{background:var(--bg-alt);border:1px solid var(--panel-border);border-radius:12px;padding:14px;color:var(--text)}
+.contact-form textarea{min-height:140px}
+.contact-form button{padding:16px;border:none;border-radius:12px;background:linear-gradient(90deg,#3DDC97,#2D9CDB);color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:900px){.modern-contact{grid-template-columns:1fr}}
+
+footer{ padding:50px 28px 90px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; color:var(--muted); font-size:13px; }
   .socials{ display:flex; gap:18px; }
   .socials a{ color:var(--muted); }
   .socials a:hover{ color:var(--accent); }
@@ -274,7 +295,14 @@
     <div class="trace-pulse" style="animation-delay:2s;"></div>
     <div class="trace-pulse" style="animation-delay:4s;"></div>
 
-    
+    <div class="node" style="top:12%;"></div><div class="node-label" style="top:12%;">U1 · HERO</div>
+    <div class="node" style="top:26%;"></div><div class="node-label" style="top:26%;">U2 · ABOUT</div>
+    <div class="node" style="top:40%;"></div><div class="node-label" style="top:40%;">U3 · SKILLS</div>
+    <div class="node" style="top:52%;"></div><div class="node-label" style="top:52%;">U4 · EDUCATION</div>
+    <div class="node" style="top:64%;"></div><div class="node-label" style="top:64%;">U5 · INTERNSHIPS</div>
+    <div class="node" style="top:76%;"></div><div class="node-label" style="top:76%;">U6 · PROJECTS</div>
+    <div class="node" style="top:86%;"></div><div class="node-label" style="top:86%;">U7 · CERTS</div>
+    <div class="node" style="top:95%;"></div><div class="node-label" style="top:95%;">U8 · CONTACT</div>
   </div>
 
   <div>
@@ -312,6 +340,10 @@
             <div class="icon">🖼️</div>
             <div>PROFILE PHOTO<br>placeholder — 4:5</div>
           </div>
+          <svg class="scope" viewBox="0 0 300 60" fill="none">
+            <rect width="300" height="60" rx="10" fill="none" stroke="var(--panel-border)"/>
+            <polyline id="wave" points="" stroke="var(--accent)" stroke-width="2" fill="none"/>
+          </svg>
         </div>
       </div>
   </section>
@@ -470,29 +502,36 @@
       <div class="sec-head reveal">
         <div>
           <div class="eyebrow">07 / CONTACT</div>
-          <h2>Let's build something.</h2>
+          <h2>Let's Connect.</h2>
         </div>
-        <span class="num">socials.json</span>
       </div>
-      <div class="contact-wrap reveal">
-        <div class="console">
-          <div class="line">$ whoami</div>
-          <div class="line"><b>gangataaran</b> — ece engineer</div>
-          <div class="line">$ cat contact.json</div>
-          <div class="line">email: <b>your.email@example.com</b></div>
-          <div class="line">location: <b>your city, country</b></div>
-          <div class="line">status: <b style="color:var(--accent)">available for internships/roles</b></div>
+
+      <div class="modern-contact reveal">
+        <div class="contact-info">
+          <div class="info-card"><div class="icon">📧</div><div><span>Email Address</span><h3>your.email@example.com</h3></div></div>
+          <div class="info-card"><div class="icon">📞</div><div><span>Phone</span><h3>+91 XXXXX XXXXX</h3></div></div>
+          <div class="info-card"><div class="icon">💼</div><div><span>LinkedIn</span><h3>linkedin.com/in/yourprofile</h3></div></div>
+          <div class="info-card"><div class="icon">📍</div><div><span>Location</span><h3>UCE (BIT Campus), Tiruchirappalli</h3></div></div>
         </div>
-        <form onsubmit="event.preventDefault(); alert('Preview only — wire this up to EmailJS.');">
-          <input type="text" placeholder="Your name" required>
-          <input type="email" placeholder="Your email" required>
-          <textarea placeholder="Message"></textarea>
-          <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">Send message →</button>
-        </form>
+
+        <div class="contact-form">
+          <h2>Send Me a Message</h2>
+          <form onsubmit="event.preventDefault(); alert('Thank you!');">
+            <label>Your Name</label>
+            <input type="text" placeholder="Enter your name">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email">
+            <label>Subject</label>
+            <input type="text" placeholder="Project / Job Opportunity">
+            <label>Message</label>
+            <textarea placeholder="Write your message..."></textarea>
+            <button type="submit">Send Message →</button>
+          </form>
+        </div>
       </div>
     </section>
 
-    <footer>
+<footer>
       <div>© 2026 Gangataaran. Built with Next.js, all content editable via JSON.</div>
       <div class="socials">
         <a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Email</a>
@@ -520,6 +559,21 @@
     setTimeout(tick, deleting ? 40 : 70);
   }
   tick();
+
+  // oscilloscope waveform
+  const wave = document.getElementById('wave');
+  let t = 0;
+  function drawWave(){
+    let pts = [];
+    for(let x=0; x<=300; x+=6){
+      const y = 30 + Math.sin((x*0.06) + t) * 16 * Math.exp(-Math.abs(Math.sin(t*0.3))*0.2);
+      pts.push(x+","+y);
+    }
+    wave.setAttribute('points', pts.join(' '));
+    t += 0.06;
+    requestAnimationFrame(drawWave);
+  }
+  drawWave();
 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
