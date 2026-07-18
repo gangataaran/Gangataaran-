@@ -112,8 +112,9 @@ Index · HTML
     backdrop-filter: blur(14px);
     background: linear-gradient(180deg, var(--bg) 60%, transparent);
   }
-  .logo{ font-weight:700; font-size:18px; }
+  .logo{ font-weight:700; font-size:18px; display:flex; align-items:center; }
   .logo span{ color:var(--accent); }
+  .logo img{ height:42px; width:auto; display:block; }
   .navlinks{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
   .navlinks a:hover{ color:var(--text); }
   .theme-toggle{
@@ -369,7 +370,92 @@ Index · HTML
   }
   .edu-quote .q-author{ color:var(--accent); font-family:'JetBrains Mono'; font-size:13px; white-space:nowrap; }
  
-  /* ---------- cards grid (internships/projects) ---------- */
+  /* ---------- internships (detailed cards) ---------- */
+.intern-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:36px; }
+@media (max-width:900px){ .intern-stats{ grid-template-columns:repeat(2,1fr); } }
+.intern-stat{
+  display:flex; align-items:center; gap:14px; background:var(--panel); border:1px solid var(--panel-border);
+  border-radius:16px; padding:18px 20px;
+}
+.intern-stat .ic{
+  width:44px; height:44px; border-radius:50%; border:1.5px solid var(--accent); color:var(--accent);
+  display:flex; align-items:center; justify-content:center; font-size:18px; flex:0 0 auto;
+}
+.intern-stat .n{ font-family:'Space Grotesk'; font-size:24px; font-weight:700; color:var(--accent); line-height:1.1; }
+.intern-stat .l{ font-size:12px; color:var(--muted); }
+ 
+.intern-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; }
+@media (max-width:1000px){ .intern-grid{ grid-template-columns:1fr; } }
+ 
+.intern-card{
+  background:var(--panel); border:1px solid var(--panel-border); border-top:3px solid var(--accent);
+  border-radius:var(--radius); padding:26px 24px 24px; transition:transform .3s ease, border-color .3s ease;
+  display:flex; flex-direction:column; height:100%;
+}
+.intern-card:hover{ transform:translateY(-6px); }
+.intern-card.c-blue{ border-top-color:var(--accent3); }
+.intern-card.c-orange{ border-top-color:var(--accent2); }
+ 
+.intern-logo{
+  width:56px; height:56px; border-radius:12px; background:#fff; display:flex; align-items:center;
+  justify-content:center; overflow:hidden; margin-bottom:16px;
+}
+.intern-logo img{ width:100%; height:100%; object-fit:contain; padding:6px; }
+ 
+.intern-tag{
+  display:inline-block; font-family:'JetBrains Mono'; font-size:11px; padding:4px 12px; border-radius:999px;
+  margin-bottom:12px; color:var(--accent); border:1px solid rgba(61,220,151,.4);
+}
+.intern-card.c-blue .intern-tag{ color:var(--accent3); border-color:rgba(91,157,255,.4); }
+.intern-card.c-orange .intern-tag{ color:var(--accent2); border-color:rgba(255,180,84,.4); }
+ 
+.intern-card h3{ font-size:19px; margin-bottom:6px; }
+.intern-org{ font-size:14px; color:var(--accent); margin-bottom:8px; }
+.intern-card.c-blue .intern-org{ color:var(--accent3); }
+.intern-card.c-orange .intern-org{ color:var(--accent2); }
+.intern-date{ font-family:'JetBrains Mono'; font-size:12px; color:var(--muted); margin-bottom:14px; }
+ 
+.intern-list{ list-style:none; margin-bottom:16px; flex:0 0 auto; }
+.intern-list li{ position:relative; padding-left:16px; font-size:13.5px; color:var(--muted); margin-bottom:8px; line-height:1.5; }
+.intern-list li::before{ content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.intern-card.c-blue .intern-list li::before{ background:var(--accent3); }
+.intern-card.c-orange .intern-list li::before{ background:var(--accent2); }
+ 
+.intern-label{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:10px; }
+.intern-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.intern-chip{
+  font-family:'JetBrains Mono'; font-size:11px; padding:5px 12px; border-radius:999px;
+  border:1px solid rgba(61,220,151,.35); color:var(--accent);
+}
+.intern-card.c-blue .intern-chip{ border-color:rgba(91,157,255,.35); color:var(--accent3); }
+.intern-card.c-orange .intern-chip{ border-color:rgba(255,180,84,.35); color:var(--accent2); }
+ 
+.intern-achieve{
+  display:flex; gap:12px; background:rgba(255,255,255,.03); border:1px solid var(--panel-border);
+  border-radius:12px; padding:14px 16px; margin-bottom:20px; font-size:13px; color:var(--muted); line-height:1.5;
+  margin-top:auto;
+}
+.intern-achieve .trophy{ font-size:18px; flex:0 0 auto; }
+ 
+.intern-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.intern-actions a{
+  flex:1; text-align:center; font-size:12px; padding:9px 10px; border-radius:10px;
+  border:1px solid var(--panel-border); color:var(--text); display:flex; align-items:center; justify-content:center; gap:6px;
+  transition:border-color .25s ease, color .25s ease;
+}
+.intern-card:hover .intern-actions a{ border-color:rgba(61,220,151,.35); }
+.intern-card.c-blue:hover .intern-actions a{ border-color:rgba(91,157,255,.35); }
+.intern-card.c-orange:hover .intern-actions a{ border-color:rgba(255,180,84,.35); }
+.intern-actions a:hover{ color:var(--accent); }
+.intern-card.c-blue .intern-actions a:hover{ color:var(--accent3); }
+.intern-card.c-orange .intern-actions a:hover{ color:var(--accent2); }
+ 
+.intern-tagline{
+  text-align:center; margin-top:34px; font-family:'JetBrains Mono'; font-size:13px; color:var(--accent);
+  letter-spacing:.04em;
+}
+ 
+/* ---------- cards grid (internships/projects) ---------- */
   .cards-grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,520px));
@@ -477,7 +563,7 @@ Index · HTML
  
   <div>
     <div class="topbar">
-      <div class="logo">GANGA<span>TAARAN</span></div>
+      <div class="logo"><img src="assets/site-logo.png" alt="Gangataaran"></div>
       <div class="navlinks">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
@@ -651,30 +737,104 @@ Index · HTML
       <div class="sec-head reveal">
         <div>
           <div class="eyebrow">04 / INTERNSHIPS</div>
-          <h2>Where the theory got tested.</h2>
-        </div>
-        
-      </div>
-      <div class="cards-grid reveal">
-        <div class="card">
-          <div class="img-placeholder thumb"><div class="icon">🏢</div>Company logo / cover</div>
-          <div class="body">
-            <span class="tag">Embedded Systems</span>
-            <h3>Firmware Intern — Company Name</h3>
-            <p>Duration · Role summary pulled from internships.json — responsibilities, mentor, and outcomes go here.</p>
-            <div class="meta"><span>📄 Report</span><span>🎓 Certificate</span><span>🖼️ Gallery</span></div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="img-placeholder thumb"><div class="icon">🏢</div>Company logo / cover</div>
-          <div class="body">
-            <span class="tag">IoT</span>
-            <h3>IoT Intern — Company Name</h3>
-            <p>Duration · Role summary pulled from internships.json — responsibilities, mentor, and outcomes go here.</p>
-            <div class="meta"><span>📄 Report</span><span>🎓 Certificate</span><span>🖼️ Gallery</span></div>
-          </div>
+          <h2>Professional Experience.</h2>
+          <p style="color:var(--muted); font-size:15px; max-width:640px; margin-top:10px;">Hands-on experience across Data Analytics, VLSI Design, and Analog Circuit Design through industry and academic internships.</p>
         </div>
       </div>
+ 
+      <div class="intern-stats reveal">
+        <div class="intern-stat"><div class="ic">💼</div><div><div class="n">03</div><div class="l">Internships</div></div></div>
+        <div class="intern-stat"><div class="ic">⏱️</div><div><div class="n">250+</div><div class="l">Hours</div></div></div>
+        <div class="intern-stat"><div class="ic">⟨/⟩</div><div><div class="n">15+</div><div class="l">Skills Learned</div></div></div>
+        <div class="intern-stat"><div class="ic">🎯</div><div><div class="n">100%</div><div class="l">Completed</div></div></div>
+      </div>
+ 
+      <div class="intern-grid reveal">
+ 
+        <!-- Data Analytics -->
+        <div class="intern-card">
+          <div class="intern-logo"><img src="assets/vdart-logo.png" alt="VDart"></div>
+          <div class="intern-tag">DATA ANALYTICS</div>
+          <h3>Data Analytics Intern</h3>
+          <div class="intern-org">VDart</div>
+          <div class="intern-date">📅 Jun 2026 – Jul 2026</div>
+          <ul class="intern-list">
+            <li>Built interactive Power BI dashboards to analyze IoT gateway and facility performance.</li>
+            <li>Cleaned and transformed 4 datasets using Power Query and Excel.</li>
+            <li>Created DAX measures, KPIs, ranking analysis and dynamic parameters.</li>
+            <li>Developed Excel dashboards and automated reports for business insights.</li>
+          </ul>
+          <div class="intern-label">Tech Stack</div>
+          <div class="intern-stack">
+            <span class="intern-chip">Power BI</span><span class="intern-chip">Excel</span>
+            <span class="intern-chip">Power Query</span><span class="intern-chip">DAX</span><span class="intern-chip">KPI</span>
+          </div>
+          <div class="intern-label">Key Achievement</div>
+          <div class="intern-achieve"><span class="trophy">🏆</span><span>Developed an IoT performance dashboard with KPI analysis, ranking, drill-down insights and dynamic filtering using Power BI.</span></div>
+          <div class="intern-actions">
+            <a href="#">🎓 Certificate</a>
+            <a href="#">📄 Internship Report</a>
+            <a href="#">📊 Dashboard</a>
+          </div>
+        </div>
+ 
+        <!-- VLSI Design -->
+        <div class="intern-card c-blue">
+          <div class="intern-logo"><img src="assets/nit-logo.png" alt="NIT Tiruchirappalli"></div>
+          <div class="intern-tag">VLSI DESIGN</div>
+          <h3>Digital VLSI Design Intern</h3>
+          <div class="intern-org">National Institute of Technology Tiruchirappalli</div>
+          <div class="intern-date">📅 May 2026 – Jun 2026</div>
+          <ul class="intern-list">
+            <li>Designed and analyzed digital VLSI circuits using Verilog HDL.</li>
+            <li>Implemented and simulated FPGA designs in Xilinx Vivado.</li>
+            <li>Developed a Home Alarm System using digital logic and verification.</li>
+            <li>Performed functional simulation and debugging to validate designs.</li>
+          </ul>
+          <div class="intern-label">Tech Stack</div>
+          <div class="intern-stack">
+            <span class="intern-chip">Verilog</span><span class="intern-chip">Vivado</span>
+            <span class="intern-chip">FPGA</span><span class="intern-chip">Digital Design</span><span class="intern-chip">VLSI</span>
+          </div>
+          <div class="intern-label">Key Achievement</div>
+          <div class="intern-achieve"><span class="trophy">🏆</span><span>Successfully implemented and validated a digital home alarm system on FPGA with all modules functioning as expected.</span></div>
+          <div class="intern-actions">
+            <a href="#">🎓 Certificate</a>
+            <a href="#">&lt;/&gt; Project</a>
+            <a href="#">📄 Report</a>
+          </div>
+        </div>
+ 
+        <!-- Analog Design -->
+        <div class="intern-card c-orange">
+          <div class="intern-logo"><img src="assets/nit-logo.png" alt="NIT Tiruchirappalli"></div>
+          <div class="intern-tag">ANALOG DESIGN</div>
+          <h3>Analog Circuit Design Intern</h3>
+          <div class="intern-org">National Institute of Technology Tiruchirappalli</div>
+          <div class="intern-date">📅 Apr 2026 – May 2026</div>
+          <ul class="intern-list">
+            <li>Designed and simulated analog electronic circuits using Proteus.</li>
+            <li>Studied and implemented signal conditioning and amplification circuits.</li>
+            <li>Analyzed circuit performance through simulation and parameter variation.</li>
+            <li>Gained hands-on experience in practical circuit design and validation.</li>
+          </ul>
+          <div class="intern-label">Tech Stack</div>
+          <div class="intern-stack">
+            <span class="intern-chip">Proteus</span><span class="intern-chip">Analog Electronics</span>
+            <span class="intern-chip">Circuit Design</span><span class="intern-chip">Simulation</span>
+          </div>
+          <div class="intern-label">Key Achievement</div>
+          <div class="intern-achieve"><span class="trophy">🏆</span><span>Designed and simulated multiple analog circuits with optimized performance and accurate results in Proteus.</span></div>
+          <div class="intern-actions">
+            <a href="#">🎓 Certificate</a>
+            <a href="#">&lt;/&gt; Project</a>
+            <a href="#">📄 Report</a>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <div class="intern-tagline reveal">⚙️ Learning. Building. Optimizing.</div>
     </section>
  
     <!-- PROJECTS -->
@@ -735,7 +895,7 @@ Index · HTML
 <div class="info-card"><div class="info-icon">📧</div><div><span>Email Address</span><h3>gangataaran4@gmail.com</h3></div></div>
 <div class="info-card"><div class="info-icon">📞</div><div><span>Phone</span><h3>+91 8610061570</h3></div></div>
 <div class="info-card"><div class="info-icon">💼</div><div><span>LinkedIn</span><h3>linkedin.com/in/gangataaran</h3></div></div>
-<div class="info-card"><div class="info-icon">📍</div><div><span>Location</span><h3>Pudukkottai, Tamil Nadu</h3></div></div>
+<div class="info-card"><div class="info-icon">📍</div><div><span>Location</span><h3>Tiruchirappalli, Tamil Nadu</h3></div></div>
 </div>
 <div class="contact-form">
 <h3>Send Me a Message</h3>
@@ -803,4 +963,5 @@ Index · HTML
 </html>
  
 
-
+logo
+31/32
