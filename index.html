@@ -22,6 +22,7 @@ Index · HTML
     --accent:#3DDC97;     /* signal green */
     --accent2:#FFB454;    /* LED amber */
     --accent3:#5B9DFF;    /* electric blue */
+    --accent4:#A78BFA;    /* violet - certifications */
     --danger:#FF6B6B;
     --radius:18px;
   }
@@ -109,15 +110,29 @@ Index · HTML
   .topbar{
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
-    padding:22px 28px;
+    padding:18px 28px;
     backdrop-filter: blur(14px);
-    background: linear-gradient(180deg, var(--bg) 60%, transparent);
+    background: linear-gradient(180deg, var(--bg) 70%, transparent);
+    border-bottom:1px solid var(--panel-border);
   }
-  .logo{ font-weight:700; font-size:18px; display:flex; align-items:center; }
-  .logo span{ color:var(--accent); }
+  .logo{ font-weight:700; font-size:19px; display:flex; align-items:center; letter-spacing:0.02em; font-family:'Space Grotesk', sans-serif; color:#fff; }
+  .logo-badge{
+    font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:22px; margin-right:8px;
+    background:linear-gradient(90deg, #4F7CFF, #A855F7);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+    flex:0 0 auto;
+  }
   .logo img{ height:42px; width:auto; display:block; }
-  .navlinks{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
-  .navlinks a:hover{ color:var(--text); }
+  .navlinks{ display:flex; gap:30px; font-size:14px; color:var(--muted); align-items:center; }
+  .nav-item{ display:flex; align-items:center; gap:7px; position:relative; padding-bottom:22px; margin-bottom:-22px; color:var(--muted); transition:color .25s ease; }
+  .nav-item svg{ width:16px; height:16px; stroke:currentColor; flex:0 0 auto; }
+  .nav-item:hover{ color:var(--text); }
+  .nav-item.active{ color:var(--accent4); font-weight:600; }
+  .nav-item.active::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
+    background:linear-gradient(90deg, var(--accent4), var(--accent3));
+    border-radius:2px;
+  }
   .theme-toggle{
     width:38px; height:38px; border-radius:50%;
     border:1px solid var(--panel-border);
@@ -125,7 +140,7 @@ Index · HTML
     cursor:pointer; font-size:15px;
     background:var(--panel);
   }
-  @media (max-width: 780px){ .navlinks{ display:none; } }
+  @media (max-width: 900px){ .navlinks{ display:none; } }
  
   section{ padding:100px 28px 40px; position:relative; }
   .eyebrow{
@@ -512,9 +527,31 @@ Index · HTML
   .card .meta{display:flex;gap:14px;font-size:12px;color:var(--muted);}
  
 /* ---------- certificates ---------- */
-  .cert-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-  @media (max-width:900px){ .cert-grid{ grid-template-columns:repeat(2,1fr); } }
-  .cert-grid .img-placeholder{ aspect-ratio:4/3; }
+  .cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:1000px){ .cert-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .cert-grid{ grid-template-columns:1fr; } }
+  .cert-card{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column; transition:transform .3s ease, border-color .3s ease;
+  }
+  .cert-card:hover{ transform:translateY(-6px); border-color:var(--accent4); box-shadow:0 14px 30px -12px rgba(167,139,250,.35); }
+  .cert-thumb{ height:200px; background:#fff; overflow:hidden; position:relative; }
+  .cert-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .cert-body{ padding:20px 20px 22px; display:flex; flex-direction:column; flex:1; }
+  .cert-body h3{ font-size:16.5px; margin-bottom:6px; line-height:1.3; }
+  .cert-org{ font-size:13px; color:var(--accent3); font-weight:600; margin-bottom:10px; }
+  .cert-date{ font-family:'JetBrains Mono'; font-size:11.5px; color:var(--muted); margin-bottom:20px; display:flex; align-items:center; gap:6px; }
+  .cert-actions{ display:flex; gap:10px; margin-top:auto; }
+  .cert-actions a{
+    flex:1; text-align:center; font-size:12px; padding:10px 8px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; gap:6px; font-weight:600;
+    transition:border-color .25s ease, transform .2s ease;
+  }
+  .cert-actions .view{ border:1px solid var(--panel-border); color:var(--text); }
+  .cert-actions .view:hover{ border-color:var(--accent4); color:var(--accent4); }
+  .cert-actions .dl{ background:linear-gradient(90deg, var(--accent4), var(--accent3)); color:#0A0D12; }
+  .cert-actions .dl:hover{ transform:translateY(-2px); }
+  .cert-sub{ color:var(--muted); font-size:15px; max-width:640px; margin-top:10px; }
  
   /* ---------- contact ---------- */
   .contact-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; }
@@ -540,7 +577,7 @@ Index · HTML
  
   /* mobile menu button (visual only) */
   .burger{ display:none; }
-  @media (max-width:780px){ .burger{ display:block; font-size:20px; cursor:pointer; } }
+  @media (max-width:900px){ .burger{ display:block; font-size:20px; cursor:pointer; } }
  
 /* ===== Premium Contact Section ===== */
 .modern-contact{display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start;margin-top:40px}
@@ -574,14 +611,14 @@ Index · HTML
  
   <div>
     <div class="topbar">
-      <div class="logo"><img src="favicon.png" alt="Gangataaran"></div>
+      <div class="logo"><div class="logo-badge">GA</div>GANGA TAARAN</div>
       <div class="navlinks">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#internships">Internships</a>
-        <a href="#projects">Projects</a>
-        <a href="#certs">Certificates</a>
-        <a href="#contact">Contact</a>
+        <a href="#hero" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
+        <a href="#about" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>About</a>
+        <a href="#skills" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6"/><path d="M16 6l6 6-6 6"/></svg>Skills</a>
+        <a href="#projects" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>Projects</a>
+        <a href="#certs" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4a3 3 0 003 3"/><path d="M17 5h3a3 3 0 01-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>Certifications</a>
+        <a href="#contact" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a>
       </div>
       <div class="theme-toggle" id="themeToggle">◐</div>
     </div>
@@ -631,7 +668,7 @@ Index · HTML
           <div class="fact-row">
             <div class="fact"><div class="n">04</div><div class="l">Projects Completed</div></div>
             <div class="fact"><div class="n">03</div><div class="l">Internships</div></div>
-            <div class="fact"><div class="n">03</div><div class="l">Certifications</div></div>
+            <div class="fact"><div class="n">05</div><div class="l">Certifications</div></div>
           </div>
         </div>
       </div>
@@ -768,7 +805,7 @@ Index · HTML
           <div class="intern-tag">DATA ANALYTICS</div>
           <h3>Data Analytics Intern</h3>
           <div class="intern-org">VDart</div>
-          <div class="intern-date">📅 8<sup>th</sup> June 2026 – 10<sup>th</sup> July 2026</div>
+          <div class="intern-date">📅 8th June 2026 – 10th July 2026</div>
           <ul class="intern-list">
             <li>Built interactive Power BI dashboards to analyze IoT gateway and facility performance.</li>
             <li>Cleaned and transformed 4 datasets using Power Query and Excel.</li>
@@ -783,7 +820,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Developed an IoT performance dashboard with KPI analysis, ranking, drill-down insights and dynamic filtering using Power BI.</span></div>
           <div class="intern-actions">
-            <a href="reports/data-analytics-report.pdf" target="_blank">📄 Report</a>
+            <a href="#">📄 Internship Report</a>
           </div>
         </div>
  
@@ -793,7 +830,7 @@ Index · HTML
           <div class="intern-tag">VLSI DESIGN</div>
           <h3>Digital VLSI Design Intern</h3>
           <div class="intern-org">National Institute of Technology Tiruchirappalli</div>
-          <div class="intern-date">📅 December 10, 2025 – January 7, 2026</div>
+          <div class="intern-date">📅 10th December 2025 – 7th January 2026</div>
           <ul class="intern-list">
             <li>Designed and analyzed digital VLSI circuits using Verilog HDL.</li>
             <li>Implemented and simulated FPGA designs in Xilinx Vivado.</li>
@@ -808,7 +845,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Successfully implemented and validated a digital home alarm system on FPGA with all modules functioning as expected.</span></div>
           <div class="intern-actions">
-            <a href="reports/digital-vlsi-report.pdf" target="_blank">📄 Report</a>
+            <a href="#">📄 Report</a>
           </div>
         </div>
  
@@ -818,7 +855,7 @@ Index · HTML
           <div class="intern-tag">ANALOG DESIGN</div>
           <h3>Analog Circuit Design Intern</h3>
           <div class="intern-org">National Institute of Technology Tiruchirappalli</div>
-          <div class="intern-date">📅 27<sup>th</sup> January 2025 – 7<sup>th</sup> February 2025</div>
+          <div class="intern-date">📅 27th January 2025 – 7th February 2025</div>
           <ul class="intern-list">
             <li>Designed and simulated analog electronic circuits using Proteus.</li>
             <li>Studied and implemented signal conditioning and amplification circuits.</li>
@@ -833,7 +870,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Designed and simulated multiple analog circuits with optimized performance and accurate results in Proteus.</span></div>
           <div class="intern-actions">
-            <a href="reports/analog-circuit-report.pdf" target="_blank">📄 Report</a>
+            <a href="#">📄 Report</a>
           </div>
         </div>
  
@@ -878,15 +915,77 @@ Index · HTML
       <div class="sec-head reveal">
         <div>
           <div class="eyebrow">06 / CERTIFICATES</div>
-          <h2>Proof of work.</h2>
+          <h2>🏆 Certifications</h2>
+          <p class="cert-sub">A collection of my learning achievements, internships and workshops from reputed organizations.</p>
         </div>
-        
       </div>
       <div class="cert-grid reveal">
-        <div class="img-placeholder"><div class="icon">🎓</div>Certificate</div>
-        <div class="img-placeholder"><div class="icon">🎓</div>Certificate</div>
-        <div class="img-placeholder"><div class="icon">🎓</div>Certificate</div>
-        <div class="img-placeholder"><div class="icon">🎓</div>Certificate</div>
+ 
+        <div class="cert-card">
+          <div class="cert-thumb"><img src="assets/final_digital_vlsi.png" alt="Digital VLSI Design Certificate"></div>
+          <div class="cert-body">
+            <h3>Digital VLSI Design</h3>
+            <div class="cert-org">NIT Tiruchirappalli</div>
+            <div class="cert-date">📅 10 December 2025 – 7 January 2026</div>
+            <div class="cert-actions">
+              <a class="view" href="assets/final_digital_vlsi.png" target="_blank">👁 View Certificate</a>
+              <a class="dl" href="assets/final_digital_vlsi.png" download>⬇ Download</a>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cert-card">
+          <div class="cert-thumb"><img src="assets/final_analog_digital.png" alt="Analog and Digital Circuit Design Certificate"></div>
+          <div class="cert-body">
+            <h3>Analog &amp; Digital Circuit Design</h3>
+            <div class="cert-org">NIT Tiruchirappalli</div>
+            <div class="cert-date">📅 27 January 2025 – 7 February 2025</div>
+            <div class="cert-actions">
+              <a class="view" href="assets/final_analog_digital.png" target="_blank">👁 View Certificate</a>
+              <a class="dl" href="assets/final_analog_digital.png" download>⬇ Download</a>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cert-card">
+          <div class="cert-thumb"><img src="assets/final_vdart_data_analytics.png" alt="Data Analytics Internship Certificate"></div>
+          <div class="cert-body">
+            <h3>Data Analytics Internship</h3>
+            <div class="cert-org">VDart</div>
+            <div class="cert-date">📅 8 June 2026 – 10 July 2026</div>
+            <div class="cert-actions">
+              <a class="view" href="assets/final_vdart_data_analytics.png" target="_blank">👁 View Certificate</a>
+              <a class="dl" href="assets/final_vdart_data_analytics.png" download>⬇ Download</a>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cert-card">
+          <div class="cert-thumb"><img src="assets/final_memory_making.png" alt="Introduction to Memory Making Certificate"></div>
+          <div class="cert-body">
+            <h3>Introduction to Memory Making</h3>
+            <div class="cert-org">Micron Technology</div>
+            <div class="cert-date">📅 6 – 9 February 2025</div>
+            <div class="cert-actions">
+              <a class="view" href="assets/final_memory_making.png" target="_blank">👁 View Certificate</a>
+              <a class="dl" href="assets/final_memory_making.png" download>⬇ Download</a>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cert-card">
+          <div class="cert-thumb"><img src="assets/final_nielit_vlsi.png" alt="VLSI for Beginners Certificate"></div>
+          <div class="cert-body">
+            <h3>VLSI for Beginners</h3>
+            <div class="cert-org">NIELIT Calicut</div>
+            <div class="cert-date">📅 14 – 18 August 2025</div>
+            <div class="cert-actions">
+              <a class="view" href="assets/final_nielit_vlsi.png" target="_blank">👁 View Certificate</a>
+              <a class="dl" href="assets/final_nielit_vlsi.png" download>⬇ Download</a>
+            </div>
+          </div>
+        </div>
+ 
       </div>
     </section>
  
@@ -967,3 +1066,8 @@ Index · HTML
 </body>
 </html>
  
+
+
+
+
+
