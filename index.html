@@ -116,12 +116,7 @@ Index · HTML
     border-bottom:1px solid var(--panel-border);
   }
   .logo{ font-weight:700; font-size:19px; display:flex; align-items:center; letter-spacing:0.02em; font-family:'Space Grotesk', sans-serif; color:#fff; }
-  .logo-badge{
-    font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:22px; margin-right:8px;
-    background:linear-gradient(90deg, #4F7CFF, #A855F7);
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
-    flex:0 0 auto;
-  }
+  .logo-badge-img{ height:34px; width:34px; object-fit:contain; margin-right:10px; flex:0 0 auto; display:block; }
   .logo img{ height:42px; width:auto; display:block; }
   .navlinks{ display:flex; gap:30px; font-size:14px; color:var(--muted); align-items:center; }
   .nav-item{ display:flex; align-items:center; gap:7px; position:relative; padding-bottom:22px; margin-bottom:-22px; color:var(--muted); transition:color .25s ease; }
@@ -611,7 +606,7 @@ Index · HTML
  
   <div>
     <div class="topbar">
-      <div class="logo"><div class="logo-badge">GA</div>GANGA TAARAN</div>
+      <div class="logo"><img src="favicon.png" alt="Logo" class="logo-badge-img">GANGA TAARAN</div>
       <div class="navlinks">
         <a href="#hero" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
         <a href="#about" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>About</a>
@@ -820,7 +815,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Developed an IoT performance dashboard with KPI analysis, ranking, drill-down insights and dynamic filtering using Power BI.</span></div>
           <div class="intern-actions">
-            <a href="#">📄 Report</a>
+            <a href="#">📄 Internship Report</a>
           </div>
         </div>
  
@@ -845,7 +840,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Successfully implemented and validated a digital home alarm system on FPGA with all modules functioning as expected.</span></div>
           <div class="intern-actions">
-            <a href="#">📄 Report</a>
+            <a href="Ganga_A_Report.pdf" target="_blank" download="Digital_VLSI_Design_Intern_Report.pdf">📄 Report</a>
           </div>
         </div>
  
@@ -870,7 +865,7 @@ Index · HTML
           <div class="intern-label">Key Achievement</div>
           <div class="intern-achieve"><span class="trophy">🏆</span><span>Designed and simulated multiple analog circuits with optimized performance and accurate results in Proteus.</span></div>
           <div class="intern-actions">
-            <a href="#">📄 Report</a>
+            <a href="INTERNSHIP_REPORT_703.pdf" target="_blank" download="Analog_Circuit_Design_Intern_Report.pdf">📄 Report</a>
           </div>
         </div>
  
@@ -1066,6 +1061,10 @@ Index · HTML
 </body>
 </html>
  
+
+
+
+
 
 
 
