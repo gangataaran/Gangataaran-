@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gangataaran A</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -912,7 +913,7 @@
         </div>
       </div>
       <div class="cert-grid reveal">
-
+ 
         <div class="cert-card">
           <div class="cert-thumb"><img src="Digital_vlsi.png" alt="Digital VLSI Design Certificate"></div>
           <div class="cert-body">
@@ -925,7 +926,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="cert-card">
           <div class="cert-thumb"><img src="Analog_digital.png" alt="Analog and Digital Circuit Design Certificate"></div>
           <div class="cert-body">
@@ -938,7 +939,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="cert-card">
           <div class="cert-thumb"><img src="Vdart_data_analytics.png" alt="Data Analytics Internship Certificate"></div>
           <div class="cert-body">
@@ -951,7 +952,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="cert-card">
           <div class="cert-thumb"><img src="Memory_making.png" alt="Introduction to Memory Making Certificate"></div>
           <div class="cert-body">
@@ -964,7 +965,7 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="cert-card">
           <div class="cert-thumb"><img src="Nielit_vlsi.png" alt="VLSI for Beginners Certificate"></div>
           <div class="cert-body">
@@ -977,7 +978,7 @@
             </div>
           </div>
         </div>
-
+ 
       </div>
     </section>
  
@@ -995,16 +996,17 @@
 </div>
 <div class="contact-form">
 <h3>Send Me a Message</h3>
-<form onsubmit="event.preventDefault();alert('Thank you for your message!');">
+<form id="contact-form">
 <label>Your Name</label>
-<input type="text" placeholder="Enter your name" required>
+<input type="text" name="name" placeholder="Enter your name" required>
 <label>Email Address</label>
-<input type="email" placeholder="Enter your email" required>
+<input type="email" name="email" placeholder="Enter your email" required>
 <label>Subject</label>
-<input type="text" placeholder="Project / Job Opportunity">
+<input type="text" name="subject" placeholder="Project / Job Opportunity">
 <label>Message</label>
-<textarea placeholder="Write your message..."></textarea>
+<textarea name="message" placeholder="Write your message..."></textarea>
 <button type="submit">Send Message →</button>
+<p id="status-msg" style="margin-top:10px;font-size:14px;color:var(--muted);"></p>
 </form>
 </div>
 </div>
@@ -1039,6 +1041,27 @@
   }
   tick();
  
+  // EmailJS contact form
+  (function() {
+    emailjs.init("cRRSD0Vb-V-T0OOqg");
+  })();
+ 
+  const contactForm = document.getElementById('contact-form');
+  const statusMsg = document.getElementById('status-msg');
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    statusMsg.textContent = "Sending...";
+ 
+    emailjs.sendForm("service_u1tgqrl", "template_ed5g9oj", this)
+      .then(function() {
+        statusMsg.textContent = "Message sent successfully!";
+        contactForm.reset();
+      }, function(error) {
+        statusMsg.textContent = "Failed to send message. Please try again.";
+        console.log("EmailJS error:", error);
+      });
+  });
+ 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
@@ -1057,3 +1080,7 @@
  
 </body>
 </html>
+ 
+
+
+
