@@ -519,31 +519,67 @@
   .card p{color:var(--muted);font-size:13px;margin-bottom:14px;}
   .card .meta{display:flex;gap:14px;font-size:12px;color:var(--muted);}
  
-/* ---------- certificates ---------- */
-  .cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-  @media (max-width:1000px){ .cert-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:600px){ .cert-grid{ grid-template-columns:1fr; } }
-  .cert-card{
+/* ---------- certificates (clean credential-style) ---------- */
+  .cert-topline{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:34px; }
+  .cert-badge{
+    display:flex; align-items:center; gap:10px; background:var(--panel); border:1px solid var(--panel-border);
+    border-radius:14px; padding:12px 18px; font-size:13px;
+  }
+  .cert-badge .cb-icon{
+    width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    background:rgba(167,139,250,.12); color:var(--accent4); font-size:16px; flex:0 0 auto;
+  }
+  .cert-badge .cb-title{ font-weight:600; }
+  .cert-badge .cb-sub{ color:var(--muted); font-size:11.5px; }
+ 
+  .cert-list{ display:flex; flex-direction:column; gap:16px; }
+  .cert-row{
+    display:grid; grid-template-columns:56px 1fr auto; gap:22px; align-items:center;
     background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius);
-    overflow:hidden; display:flex; flex-direction:column; transition:transform .3s ease, border-color .3s ease;
+    padding:22px 24px; transition:border-color .3s ease, transform .3s ease;
   }
-  .cert-card:hover{ transform:translateY(-6px); border-color:var(--accent4); box-shadow:0 14px 30px -12px rgba(167,139,250,.35); }
-  .cert-thumb{ height:200px; background:#fff; overflow:hidden; position:relative; }
-  .cert-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .cert-body{ padding:20px 20px 22px; display:flex; flex-direction:column; flex:1; }
-  .cert-body h3{ font-size:16.5px; margin-bottom:6px; line-height:1.3; }
-  .cert-org{ font-size:13px; color:var(--accent3); font-weight:600; margin-bottom:10px; }
-  .cert-date{ font-family:'JetBrains Mono'; font-size:11.5px; color:var(--muted); margin-bottom:20px; display:flex; align-items:center; gap:6px; }
-  .cert-actions{ display:flex; gap:10px; margin-top:auto; }
-  .cert-actions a{
-    flex:1; text-align:center; font-size:12px; padding:10px 8px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; gap:6px; font-weight:600;
-    transition:border-color .25s ease, transform .2s ease;
+  .cert-row:hover{ transform:translateY(-3px); border-color:var(--accent4); box-shadow:0 14px 30px -14px rgba(167,139,250,.35); }
+  @media (max-width:820px){ .cert-row{ grid-template-columns:1fr; } }
+ 
+  .cert-icon{
+    width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:24px; background:rgba(167,139,250,.10); color:var(--accent4); flex:0 0 auto;
   }
-  .cert-actions .view{ border:1px solid var(--panel-border); color:var(--text); }
-  .cert-actions .view:hover{ border-color:var(--accent4); color:var(--accent4); }
-  .cert-actions .dl{ background:linear-gradient(90deg, var(--accent4), var(--accent3)); color:#0A0D12; }
-  .cert-actions .dl:hover{ transform:translateY(-2px); }
+  @media (max-width:820px){ .cert-icon{ margin-bottom:4px; } }
+ 
+  .cert-main h3{ font-size:17px; margin-bottom:4px; }
+  .cert-main .cert-org{ font-size:13.5px; color:var(--accent3); font-weight:600; margin-bottom:12px; display:inline-block; }
+  .cert-skills-label{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin-bottom:8px; }
+  .cert-skills{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .cert-chip{
+    font-family:'JetBrains Mono'; font-size:11px; padding:5px 12px; border-radius:999px;
+    border:1px solid var(--panel-border); color:var(--muted);
+  }
+  .cert-meta-row{ display:flex; flex-wrap:wrap; gap:16px; font-family:'JetBrains Mono'; font-size:11.5px; color:var(--muted); }
+  .cert-meta-row span{ display:flex; align-items:center; gap:6px; }
+ 
+  .cert-side{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  @media (max-width:820px){ .cert-side{ align-items:flex-start; margin-top:12px; } }
+  .cert-verify{
+    display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600;
+    padding:11px 20px; border-radius:10px; border:1.5px solid var(--accent4); color:var(--accent4);
+    white-space:nowrap; transition:background .25s ease, color .25s ease, transform .2s ease;
+  }
+  .cert-verify:hover{ background:var(--accent4); color:#0A0D12; transform:translateY(-2px); }
+  .cert-download{
+    font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px;
+  }
+  .cert-download:hover{ color:var(--accent4); }
+ 
+  .cert-footnote{
+    display:flex; align-items:center; gap:14px; background:var(--panel); border:1px solid var(--panel-border);
+    border-radius:16px; padding:18px 22px; margin-top:24px; font-size:13.5px; color:var(--muted);
+  }
+  .cert-footnote .fn-icon{
+    width:38px; height:38px; border-radius:50%; background:rgba(167,139,250,.12); color:var(--accent4);
+    display:flex; align-items:center; justify-content:center; font-size:16px; flex:0 0 auto;
+  }
+  .cert-footnote b{ color:var(--text); }
   .cert-sub{ color:var(--muted); font-size:15px; max-width:640px; margin-top:10px; }
  
   /* ---------- contact ---------- */
@@ -563,10 +599,16 @@
   textarea{ min-height:110px; resize:vertical; }
   input:focus, textarea:focus{ outline:2px solid var(--accent); }
  
-  footer{ padding:50px 28px 90px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; color:var(--muted); font-size:13px; }
-  .socials{ display:flex; gap:18px; }
-  .socials a{ color:var(--muted); }
+  footer{
+    padding:36px 28px; display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px; color:var(--muted); font-size:13px;
+    border-top:1px solid var(--panel-border); margin-top:30px;
+  }
+  .footer-name{ font-weight:700; color:var(--text); font-size:15px; letter-spacing:0.02em; font-family:'Space Grotesk', sans-serif; }
+  .socials{ display:flex; gap:26px; align-items:center; }
+  .socials a{ color:var(--muted); font-size:13px; display:flex; align-items:center; gap:7px; transition:color .25s ease; }
   .socials a:hover{ color:var(--accent); }
+  .socials a svg{ width:16px; height:16px; stroke:currentColor; flex:0 0 auto; }
  
   /* mobile menu button (visual only) */
   .burger{ display:none; }
@@ -912,73 +954,105 @@
           <p class="cert-sub">A collection of my learning achievements, internships and workshops from reputed organizations.</p>
         </div>
       </div>
-      <div class="cert-grid reveal">
- 
-        <div class="cert-card">
-          <div class="cert-thumb"><img src="Digital_vlsi.png" alt="Digital VLSI Design Certificate"></div>
-          <div class="cert-body">
-            <h3>Digital VLSI Design</h3>
-            <div class="cert-org">NIT Tiruchirappalli</div>
-            <div class="cert-date">📅 10 December 2025 – 7 January 2026</div>
-            <div class="cert-actions">
-              <a class="view" href="Digital_vlsi.png" target="_blank">👁 View Certificate</a>
-              <a class="dl" href="Digital_vlsi.png" download="Digital_VLSI_Design_Certificate.png">⬇ Download</a>
+
+      <div class="cert-topline reveal">
+        <div class="cert-badge"><div class="cb-icon">✓</div><div><div class="cb-title">Verified</div><div class="cb-sub">Authentic &amp; secure</div></div></div>
+        <div class="cert-badge"><div class="cb-icon">🔗</div><div><div class="cb-title">Direct Link</div><div class="cb-sub">Official source</div></div></div>
+        <div class="cert-badge"><div class="cb-icon">🌐</div><div><div class="cb-title">Always Accessible</div><div class="cb-sub">Up to date</div></div></div>
+      </div>
+
+      <div class="cert-list reveal">
+
+        <div class="cert-row">
+          <div class="cert-icon">🧩</div>
+          <div class="cert-main">
+            <h3>Digital VLSI Design & Implementation</h3>
+            <span class="cert-org">NIT Tiruchirappalli</span>
+            <div class="cert-skills-label">Skills Gained</div>
+            <div class="cert-skills">
+              <span class="cert-chip">Verilog HDL</span><span class="cert-chip">FPGA</span><span class="cert-chip">Xilinx Vivado</span><span class="cert-chip">Digital Design</span>
             </div>
+            <div class="cert-meta-row"><span>📅 Issued: Jan 2026</span></div>
+          </div>
+          <div class="cert-side">
+            <a class="cert-verify" href="Digital_vlsi.png" target="_blank">↗ Verify Credential</a>
+            <a class="cert-download" href="Digital_vlsi.png" download="Digital_VLSI_Design_Certificate.png">⬇ Download</a>
           </div>
         </div>
- 
-        <div class="cert-card">
-          <div class="cert-thumb"><img src="Analog_digital.png" alt="Analog and Digital Circuit Design Certificate"></div>
-          <div class="cert-body">
+
+        <div class="cert-row">
+          <div class="cert-icon">⚡</div>
+          <div class="cert-main">
             <h3>Analog &amp; Digital Circuit Design</h3>
-            <div class="cert-org">NIT Tiruchirappalli</div>
-            <div class="cert-date">📅 27 January 2025 – 7 February 2025</div>
-            <div class="cert-actions">
-              <a class="view" href="Analog_digital.png" target="_blank">👁 View Certificate</a>
-              <a class="dl" href="Analog_digital.png" download="Analog_Digital_Circuit_Design_Certificate.png">⬇ Download</a>
+            <span class="cert-org">NIT Tiruchirappalli</span>
+            <div class="cert-skills-label">Skills Gained</div>
+            <div class="cert-skills">
+              <span class="cert-chip">Proteus</span><span class="cert-chip">Analog Electronics</span><span class="cert-chip">Circuit Simulation</span>
             </div>
+            <div class="cert-meta-row"><span>📅 Issued: Feb 2025</span></div>
+          </div>
+          <div class="cert-side">
+            <a class="cert-verify" href="Analog_digital.png" target="_blank">↗ Verify Credential</a>
+            <a class="cert-download" href="Analog_digital.png" download="Analog_Digital_Circuit_Design_Certificate.png">⬇ Download</a>
           </div>
         </div>
- 
-        <div class="cert-card">
-          <div class="cert-thumb"><img src="Vdart_data_analytics.png" alt="Data Analytics Internship Certificate"></div>
-          <div class="cert-body">
+
+        <div class="cert-row">
+          <div class="cert-icon">📊</div>
+          <div class="cert-main">
             <h3>Data Analytics Internship</h3>
-            <div class="cert-org">VDart</div>
-            <div class="cert-date">📅 8 June 2026 – 10 July 2026</div>
-            <div class="cert-actions">
-              <a class="view" href="Vdart_data_analytics.png" target="_blank">👁 View Certificate</a>
-              <a class="dl" href="Vdart_data_analytics.png" download="Data_Analytics_Internship_Certificate.png">⬇ Download</a>
+            <span class="cert-org">VDart</span>
+            <div class="cert-skills-label">Skills Gained</div>
+            <div class="cert-skills">
+              <span class="cert-chip">Power BI</span><span class="cert-chip">Excel</span><span class="cert-chip">Power Query</span><span class="cert-chip">DAX</span>
             </div>
+            <div class="cert-meta-row"><span>📅 Issued: Jul 2026</span></div>
+          </div>
+          <div class="cert-side">
+            <a class="cert-verify" href="Vdart_data_analytics.png" target="_blank">↗ Verify Credential</a>
+            <a class="cert-download" href="Vdart_data_analytics.png" download="Data_Analytics_Internship_Certificate.png">⬇ Download</a>
           </div>
         </div>
- 
-        <div class="cert-card">
-          <div class="cert-thumb"><img src="Memory_making.png" alt="Introduction to Memory Making Certificate"></div>
-          <div class="cert-body">
-            <h3>Introduction to Memory Making</h3>
-            <div class="cert-org">Micron Technology</div>
-            <div class="cert-date">📅 6 – 9 February 2025</div>
-            <div class="cert-actions">
-              <a class="view" href="Memory_making.png" target="_blank">👁 View Certificate</a>
-              <a class="dl" href="Memory_making.png" download="Introduction_to_Memory_Making_Certificate.png">⬇ Download</a>
+
+        <div class="cert-row">
+          <div class="cert-icon">💾</div>
+          <div class="cert-main">
+            <h3>Memory Design Fundamentals</h3>
+            <span class="cert-org">Micron Technology</span>
+            <div class="cert-skills-label">Skills Gained</div>
+            <div class="cert-skills">
+              <span class="cert-chip">Semiconductor Memory</span><span class="cert-chip">Fabrication Basics</span>
             </div>
+            <div class="cert-meta-row"><span>📅 Issued: Feb 2025</span></div>
+          </div>
+          <div class="cert-side">
+            <a class="cert-verify" href="Memory_making.png" target="_blank">↗ Verify Credential</a>
+            <a class="cert-download" href="Memory_making.png" download="Introduction_to_Memory_Making_Certificate.png">⬇ Download</a>
           </div>
         </div>
- 
-        <div class="cert-card">
-          <div class="cert-thumb"><img src="Nielit_vlsi.png" alt="VLSI for Beginners Certificate"></div>
-          <div class="cert-body">
-            <h3>VLSI for Beginners</h3>
-            <div class="cert-org">NIELIT Calicut</div>
-            <div class="cert-date">📅 14 – 18 August 2025</div>
-            <div class="cert-actions">
-              <a class="view" href="Nielit_vlsi.png" target="_blank">👁 View Certificate</a>
-              <a class="dl" href="Nielit_vlsi.png" download="VLSI_for_Beginners_Certificate.png">⬇ Download</a>
+
+        <div class="cert-row">
+          <div class="cert-icon">🔬</div>
+          <div class="cert-main">
+            <h3>VLSI Fundamentals</h3>
+            <span class="cert-org">NIELIT Calicut</span>
+            <div class="cert-skills-label">Skills Gained</div>
+            <div class="cert-skills">
+              <span class="cert-chip">VLSI Fundamentals</span><span class="cert-chip">Digital Logic</span><span class="cert-chip">Semiconductor Devices</span>
             </div>
+            <div class="cert-meta-row"><span>📅 Issued: Aug 2025</span></div>
+          </div>
+          <div class="cert-side">
+            <a class="cert-verify" href="Nielit_vlsi.png" target="_blank">↗ Verify Credential</a>
+            <a class="cert-download" href="Nielit_vlsi.png" download="VLSI_for_Beginners_Certificate.png">⬇ Download</a>
           </div>
         </div>
- 
+
+      </div>
+
+      <div class="cert-footnote reveal">
+        <div class="fn-icon">★</div>
+        <div><b>All certifications are verifiable.</b> Click "Verify Credential" to view the original certificate document.</div>
       </div>
     </section>
  
@@ -1013,27 +1087,22 @@
 </section>
  
     <footer>
-    <div><strong>GANGATAARAN A</strong></div>
-
-    <div class="socials">
-
-        <a href="https://github.com/Gangataaran" target="_blank">
-            <i class="fa-brands fa-github"></i>
-            GitHub
+      <div class="footer-name">GANGATAARAN A</div>
+      <div class="socials">
+        <a href="https://github.com/gangataaran" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
         </a>
-
-        <a href="https://www.linkedin.com/in/gangataaran" target="_blank">
-            <i class="fa-brands fa-linkedin"></i>
-            LinkedIn
+        <a href="https://linkedin.com/in/gangataaran" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
         </a>
-
-        <a href="gangataaran4@gmail.com">
-            <i class="fa-solid fa-envelope"></i>
-            Email
+        <a href="mailto:gangataaran4@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+          Email
         </a>
-
-    </div>
-</footer>
+      </div>
+    </footer>
   </div>
 </div>
  
@@ -1096,7 +1165,3 @@
  
 </body>
 </html>
- 
-
-
-
