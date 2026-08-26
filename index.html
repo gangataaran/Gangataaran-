@@ -630,9 +630,42 @@
 .contact-form button{width:100%;padding:15px;border:none;border-radius:10px;background:linear-gradient(90deg,#39d98a,#3b82f6);color:#fff;font-weight:700;cursor:pointer}
 @media(max-width:900px){.modern-contact{grid-template-columns:1fr}}
  
+/* ===== Custom circuit cursor ===== */
+  body.custom-cursor-active, body.custom-cursor-active *{ cursor:none !important; }
+  .cursor-dot, .cursor-ring{
+    position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+    border-radius:50%; transform:translate(-50%,-50%);
+  }
+  .cursor-dot{
+    width:7px; height:7px; background:var(--accent);
+    box-shadow:0 0 10px 2px var(--accent);
+    transition:width .2s ease, height .2s ease, background .2s ease, opacity .2s ease;
+  }
+  .cursor-ring{
+    width:34px; height:34px; border:1.5px solid var(--accent);
+    opacity:.55;
+    transition:width .22s cubic-bezier(.2,.9,.3,1.2), height .22s cubic-bezier(.2,.9,.3,1.2),
+               border-color .25s ease, background .25s ease, opacity .25s ease;
+  }
+  .cursor-ring::after{
+    content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:3px; height:3px; border-radius:50%; background:var(--accent); opacity:0;
+  }
+  body.cursor-hover .cursor-ring{
+    width:56px; height:56px; background:rgba(61,220,151,.08); border-color:var(--accent4);
+  }
+  body.cursor-hover .cursor-dot{ width:5px; height:5px; background:var(--accent4); box-shadow:0 0 10px 2px var(--accent4); }
+  body.cursor-click .cursor-ring{ width:26px; height:26px; }
+  @media (hover:none), (pointer:coarse){
+    .cursor-dot, .cursor-ring{ display:none; }
+  }
+ 
 </style>
 </head>
 <body>
+ 
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
  
 <div class="shell">
   <div class="trace-col">
@@ -966,7 +999,7 @@
         <div class="cert-row">
           <div class="cert-icon">🧩</div>
           <div class="cert-main">
-            <h3>Digital VLSI Design & Implementation</h3>
+            <h3>Digital VLSI Design</h3>
             <span class="cert-org">NIT Tiruchirappalli</span>
             <div class="cert-skills-label">Skills Gained</div>
             <div class="cert-skills">
@@ -976,7 +1009,6 @@
           </div>
           <div class="cert-side">
             <a class="cert-verify" href="Digital_vlsi.png" target="_blank">↗ Verify Credential</a>
-            <a class="cert-download" href="Digital_vlsi.png" download="Digital_VLSI_Design_Certificate.png">⬇ Download</a>
           </div>
         </div>
 
@@ -993,7 +1025,6 @@
           </div>
           <div class="cert-side">
             <a class="cert-verify" href="Analog_digital.png" target="_blank">↗ Verify Credential</a>
-            <a class="cert-download" href="Analog_digital.png" download="Analog_Digital_Circuit_Design_Certificate.png">⬇ Download</a>
           </div>
         </div>
 
@@ -1010,14 +1041,13 @@
           </div>
           <div class="cert-side">
             <a class="cert-verify" href="Vdart_data_analytics.png" target="_blank">↗ Verify Credential</a>
-            <a class="cert-download" href="Vdart_data_analytics.png" download="Data_Analytics_Internship_Certificate.png">⬇ Download</a>
           </div>
         </div>
 
         <div class="cert-row">
           <div class="cert-icon">💾</div>
           <div class="cert-main">
-            <h3>Memory Design Fundamentals</h3>
+            <h3>Introduction to Memory Making</h3>
             <span class="cert-org">Micron Technology</span>
             <div class="cert-skills-label">Skills Gained</div>
             <div class="cert-skills">
@@ -1027,14 +1057,13 @@
           </div>
           <div class="cert-side">
             <a class="cert-verify" href="Memory_making.png" target="_blank">↗ Verify Credential</a>
-            <a class="cert-download" href="Memory_making.png" download="Introduction_to_Memory_Making_Certificate.png">⬇ Download</a>
           </div>
         </div>
 
         <div class="cert-row">
           <div class="cert-icon">🔬</div>
           <div class="cert-main">
-            <h3>VLSI Fundamentals</h3>
+            <h3>VLSI for Beginners</h3>
             <span class="cert-org">NIELIT Calicut</span>
             <div class="cert-skills-label">Skills Gained</div>
             <div class="cert-skills">
@@ -1044,7 +1073,6 @@
           </div>
           <div class="cert-side">
             <a class="cert-verify" href="Nielit_vlsi.png" target="_blank">↗ Verify Credential</a>
-            <a class="cert-download" href="Nielit_vlsi.png" download="VLSI_for_Beginners_Certificate.png">⬇ Download</a>
           </div>
         </div>
 
@@ -1066,7 +1094,7 @@
 <div class="info-card"><div class="info-icon">📧</div><div><span>Email Address</span><h3>gangataaran4@gmail.com</h3></div></div>
 <div class="info-card"><div class="info-icon">📞</div><div><span>Phone</span><h3>+91 8610061570</h3></div></div>
 <div class="info-card"><div class="info-icon">💼</div><div><span>LinkedIn</span><h3>linkedin.com/in/gangataaran</h3></div></div>
-<div class="info-card"><div class="info-icon">📍</div><div><span>Location</span><h3>Pudukkottai, Tamil Nadu</h3></div></div>
+<div class="info-card"><div class="info-icon">📍</div><div><span>Location</span><h3>Tiruchirappalli, Tamil Nadu</h3></div></div>
 </div>
 <div class="contact-form">
 <h3>Send Me a Message</h3>
@@ -1161,6 +1189,39 @@
     html.setAttribute('data-theme', isLight ? 'dark' : 'light');
     toggle.textContent = isLight ? '◐' : '◑';
   });
+
+  // custom circuit cursor
+  (function(){
+    if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    document.body.classList.add('custom-cursor-active');
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+
+    window.addEventListener('mousemove', (e)=>{
+      dotX = e.clientX; dotY = e.clientY;
+      dot.style.left = dotX + 'px';
+      dot.style.top = dotY + 'px';
+    });
+
+    function loop(){
+      ringX += (dotX - ringX) * 0.18;
+      ringY += (dotY - ringY) * 0.18;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    document.addEventListener('mousedown', ()=>document.body.classList.add('cursor-click'));
+    document.addEventListener('mouseup', ()=>document.body.classList.remove('cursor-click'));
+
+    const hoverSelector = 'a, button, .btn, .nav-item, .card, .cert-row, .cert-verify, .intern-card, .theme-toggle, input, textarea, .info-card, .skill-card';
+    document.querySelectorAll(hoverSelector).forEach(el=>{
+      el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
+    });
+  })();
 </script>
  
 </body>
